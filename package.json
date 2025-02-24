@@ -1,0 +1,17 @@
+{
+  "dependencies": {
+    "braintree": "^3.28.0",
+    "cors": "^2.8.5",
+    "express-formidable": "^1.2.0"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "cross-env": "^7.0.3"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "frontend": "cd frontend && npm run dev",
+    "dev": "concurrently \"npm run server\" \"npm run frontend\""
+  }
+}
