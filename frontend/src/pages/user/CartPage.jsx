@@ -21,7 +21,7 @@ const CartPage = () => {
     try {
       let total = 0;
       cart?.map((item) => {
-        total = total + item.price;
+        total = total + Number(item.price);
       });
       console.log(total);
       return total.toLocaleString("en-US", {
@@ -61,11 +61,11 @@ const CartPage = () => {
   const handlePayment = async () => {
     try {
       setLoading(true);
-      const { nonce } = await instance.requestPaymentMethod();
-      const { data } = await axios.post("/api/v1/product/braintree/payment", {
-        nonce,
-        cart,
-      });
+      // const { nonce } = await instance.requestPaymentMethod();
+      // const { data } = await axios.post("/api/v1/product/braintree/payment", {
+      //   nonce,
+      //   cart,
+      // });
       setLoading(false);
       localStorage.removeItem("cart");
       setCart([]);
@@ -142,7 +142,7 @@ const CartPage = () => {
               <button
                 className="btn btn-primary"
                 onClick={handlePayment}
-                disabled={loading || !instance || !auth?.user}
+                disabled={!loading || !instance || !auth?.user}
               >
                 {loading ? "Processing ...." : "Make Payment"}
               </button>
